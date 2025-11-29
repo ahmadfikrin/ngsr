@@ -5,6 +5,7 @@ from google.cloud import firestore
 import datetime
 import json
 import os
+import requests
 from dotenv import load_dotenv
 
 # ==========================================
@@ -18,7 +19,8 @@ load_dotenv()
 # Ini memungkinkan kita ganti Project ID/DB Name tanpa ubah kodingan
 PROJECT_ID = os.getenv("GCP_PROJECT_ID")
 LOCATION = os.getenv("GCP_REGION", "us-central1")
-DB_NAME = os.getenv("GCP_DB_NAME", "(default)") # Default jika tidak diset
+DB_NAME = os.getenv("GCP_DB_NAME", "(default)")
+DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
 
 # Setup Halaman Streamlit (Wajib ditaruh paling atas)
 st.set_page_config(
@@ -196,7 +198,22 @@ if uploaded_file is not None:
                     # Logic Alert System
                     if result.get("expiry_alert") == "Yes":
                         st.error("🚨 **EXPIRY ALERT:** Sistem mendeteksi bahan hampir busuk! Webhook dikirim.")
-                        # [TODO for Hackathon]: Tambahkan code requests.post(WEBHOOK_URL) disini
+                        # Cek apakah URL ada?
+                        if DISCORD_WEBHOOK_URL:
+                            try:
+                                # Siapkan Paket Data (JSON) khusus format Discord
+                                discord_payload = {
+                                    "username": "NGSR Guardian", # Nama Bot
+                                    "avatar_url": "https://cdn-icons-png.flaticon.com/512/2903/2903556.png", # Ikon Kulkas
+                                    "content": f"🚨 **PERINGATAN KESEGARAN**\nUser: `{user_id}`\nNGSR mendeteksi bahan **Expiring**. Segera cek inventory!\n\n*Sent to Private Channel* 🔒"
+                                }
+                                # Kirim Pesan (POST Request)
+                                requests.post(DISCORD_WEBHOOK_URL, json=discord_payload)
+                                st.toast("Notifikasi terkirim ke Discord!", icon="✅")
+                            except Exception as e:
+                                st.error(f"Gagal kirim webhook: {e}")
+                        else:
+                            st.warning("⚠️ Discord URL belum diset di Environment Variable.")
                 
                 # Kanan: Rekomendasi Resep
                 with res_col2:
