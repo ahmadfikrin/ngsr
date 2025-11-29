@@ -1,0 +1,6 @@
+streamlit
+google-cloud-aiplatform
+google-cloud-firestore
+pandas
+python-dotenv
+requests
