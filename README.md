@@ -2,8 +2,6 @@
 
 NGSR is a smart refrigerator application powered by **Google Cloud Gemini 2.5 Flash Lite** and **Firestore**. It helps users manage their fridge inventory, check food freshness, and generate health-compliant recipes based on their personal health profile.
 
-https://docs.google.com/document/d/1Kq5HEEOtqA3jkgUV5wthbRc6qiE3om8TzXSVXXh16wY/edit?usp=sharing
-
 ## ✨ Features
 
 *   **👤 User Health Profile**: Define health conditions and dietary restrictions (e.g., Gout, Diabetes, Allergies) which act as rules for the AI.
@@ -12,7 +10,6 @@ https://docs.google.com/document/d/1Kq5HEEOtqA3jkgUV5wthbRc6qiE3om8TzXSVXXh16wY/
     *   Check freshness (Fresh vs. Expiring).
     *   Alert if items are about to expire.
 *   **🍲 Smart Recipe Generation**: Suggests recipes that use available ingredients and strictly adhere to the user's health profile.
-*   **📊 History Tracking**: Saves all scans and analysis results to Google Cloud Firestore for historical tracking.
 
 ## 🛠️ Tech Stack
 
@@ -21,6 +18,9 @@ https://docs.google.com/document/d/1Kq5HEEOtqA3jkgUV5wthbRc6qiE3om8TzXSVXXh16wY/
 *   **Database**: Google Cloud Firestore
 *   **Compute/Application Layer**: Google Cloud Run
 *   **Language**: Python
+
+## 🏗️ High Level Architecture
+![High Level Architecture](assets/hla.png)
 
 ## 🚀 Setup & Installation
 
