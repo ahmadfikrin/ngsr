@@ -19,6 +19,7 @@ https://docs.google.com/document/d/1Kq5HEEOtqA3jkgUV5wthbRc6qiE3om8TzXSVXXh16wY/
 *   **Frontend**: [Streamlit](https://streamlit.io/)
 *   **AI Model**: Google Vertex AI (`gemini-2.5-flash-lite`)
 *   **Database**: Google Cloud Firestore
+*   **Compute/Application Layer**: Google Cloud Run
 *   **Language**: Python
 
 ## 🚀 Setup & Installation
@@ -40,13 +41,19 @@ Create a `.env` file in the root directory or set environment variables directly
 
 ```env
 GCP_PROJECT_ID="your-gcp-project-id"
-GCP_REGION="us-central1"       # Optional, default: us-central1
-GCP_DB_NAME="(default)"        # Optional, default: (default)
+GCP_REGION="us-central1"                   # Optional, default: us-central1
+GCP_DB_NAME="your-firestore-db-name"        # Optional, default: (default)
 ```
 
-### 4. Run the Application
+### 4. Run the Application via Google Cloud Run
 ```bash
-streamlit run app.py
+gcloud run deploy ngsr \
+  --source . \
+  --platform managed \
+  --region us-central1 \
+  --allow-unauthenticated \
+  --port 8501 \
+  --set-env-vars GCP_PROJECT_ID=your-gcp-project-id,GCP_REGION=us-central1,GCP_DB_NAME=your-firestore-db-name
 ```
 
 ## 📖 Usage Guide
