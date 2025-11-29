@@ -2,6 +2,8 @@
 
 NGSR is a smart refrigerator application powered by **Google Cloud Vertex AI (Gemini 2.5 Flash Lite)** and **Firestore**. It helps users manage their fridge inventory, check food freshness, and generate health-compliant recipes based on their personal health profile.
 
+https://docs.google.com/document/d/1Kq5HEEOtqA3jkgUV5wthbRc6qiE3om8TzXSVXXh16wY/edit?usp=sharing
+
 ## ✨ Features
 
 *   **👤 User Health Profile**: Define health conditions and dietary restrictions (e.g., Gout, Diabetes, Allergies) which act as rules for the AI.
